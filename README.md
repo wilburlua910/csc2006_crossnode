@@ -1,2 +1,3 @@
-# csc2006_crossnode
-IOT project
+# Smart Traffic Junction Project 
+
+
