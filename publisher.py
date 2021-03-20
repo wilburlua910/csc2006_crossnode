@@ -22,13 +22,12 @@ client = TBDeviceMqttClient(THINGSBOARD_HOST, ACCESS_TOKEN)
 client_to_edge = TBDeviceMqttClient(THINGSBOARD_HOST, ACCESS_TOKEN_EDGE_1)
 client.connect()
 client_to_edge.connect()
-#client.send_attributes({"junction1": 1414, "junction2" : 1414})
 
-# Sending telemetry and checking the delivery status (QoS = 1 by default)
-result = client.send_attributes({"junction1": 250, "junction2" :250})
+# Sending to attribute and checking the delivery status (QoS = 1 by default)
+result = client.send_attributes({"Edge1_Len": 10, "Edge1_Straight": 7, "Edge1_Right": 3})
 
 # send to edge attribute
-result2 = client_to_edge.send_attributes({"junction1": 250, "junction2" :250})
+result2 = client_to_edge.send_attributes({"Edge1_Len": 10, "Edge1_Straight": 7, "Edge1_Right": 3})
 
 success = result.get() == TBPublishInfo.TB_ERR_SUCCESS
 
@@ -63,3 +62,9 @@ def on_publis2h(client_to_edge, userdata, result):
 #     client.publish('v1/devices/me/telemetry', json.dumps(sensor_data), 1)
 #     time.sleep(2)
 #     client.loop()
+
+# write method here to compute payload result
+# algo here
+
+
+

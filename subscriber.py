@@ -6,12 +6,11 @@ import time
 THINGSBOARD_HOST = '129.126.163.157'
 
 #Access token of Controller
-ACCESS_TOKEN = '2rU2SGnT2A3qqGJ5thpf'
+ACCESS_TOKEN = 'M5enL3ND6Jl9KX1mRwje'
 
 INTERVAL=2
 
-#Sample Data
-sensor_data = {'temperature': 1414114, 'humidity': 0}
+
 
 #Controller device
 client = TBDeviceMqttClient(THINGSBOARD_HOST, ACCESS_TOKEN)
@@ -29,5 +28,5 @@ client.connect()
 
 #Poll for changes
 while True:
-    client.request_attributes(["junction1", "junction2"], callback=on_attribute_change)
+    client.request_attributes(["Edge1_Len", "Edge1_Straight", "Edge1_Right", "Edge2_Len", "Edge2_Straight", "Edge2_Right"],callback=on_attribute_change)  
     time.sleep(5)
