@@ -6,21 +6,33 @@ import time
 THINGSBOARD_HOST = '129.126.163.157'
 
 #Access token of Controller
-ACCESS_TOKEN = '2rU2SGnT2A3qqGJ5thpf'
+ACCESS_TOKEN = 'M5enL3ND6Jl9KX1mRwje'
 
 INTERVAL=2
+
+#Access token of edge device 1
+ACCESS_TOKEN_EDGE_1 = 'CnpDrS1iinb5fZ4dQD90'
+
+
 #Sample
 sensor_data = {'temperature': 1414114, 'humidity': 0}
 
 #Controller device
 client = TBDeviceMqttClient(THINGSBOARD_HOST, ACCESS_TOKEN)
+client_to_edge = TBDeviceMqttClient(THINGSBOARD_HOST, ACCESS_TOKEN_EDGE_1)
 client.connect()
+client_to_edge.connect()
 #client.send_attributes({"junction1": 1414, "junction2" : 1414})
 
 # Sending telemetry and checking the delivery status (QoS = 1 by default)
-result = client.send_attributes({"junction1": 15, "junction2" :15})
+result = client.send_attributes({"junction1": 250, "junction2" :250})
+
+# send to edge attribute
+result2 = client_to_edge.send_attributes({"junction1": 250, "junction2" :250})
 
 success = result.get() == TBPublishInfo.TB_ERR_SUCCESS
+
+success2 = result2.get()==TBPublishInfo.TB_ERR_SUCCESS
 
 def on_connect(client, userdata, flags, rc):
     print("Connected with result code "+str(rc))
@@ -28,13 +40,23 @@ def on_connect(client, userdata, flags, rc):
 
     #client.subscribe("tb/crossnode/temperature")
 
+def on_connect2(client_to_edge, userdata, flags, rc):
+    print("Connected with result code "+str(rc))
+    print("Connected")
+
+
 def on_message(client, userdata, msg):
+    print(msg.topic+" "+str(msg.payload))
+
+def on_message2(client_to_edge, userdata, msg):
     print(msg.topic+" "+str(msg.payload))
 
 def on_publish(client, userdata, result):
     print("Data is Published \n",)
     pass
-
+def on_publis2h(client_to_edge, userdata, result):
+    print("Data is Published \n",)
+    pass
 #client.connect(broker_address, 1883, 60)
 
 # while True:
