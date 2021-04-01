@@ -57,8 +57,11 @@ client2.subscribe("test123")
 while(True):
 # PUBLISH CODE 
 # ARGS:(topic, message)
-    client2.publish("test123", "DATA DATA DATA")
     time.sleep(4)
+    client.loop_stop
+    client2.loop_stop
+    client.loop_start()
+    client2.loop_start()
 
 
 
