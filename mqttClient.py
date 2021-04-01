@@ -45,7 +45,7 @@ client2.on_message=on_message
 # Setting up connection to the broker
 print("Connecting to broker: ",broker)
 client.connect(broker)
-hoe.connect(broker)
+client2.connect(broker)
 # Loop needed for callback to work
 client.loop_start()
 client2.loop_forever()
@@ -61,5 +61,5 @@ client2.publish("test123", "DATA DATA DATA")
 time.sleep(4)
 client.loop_stop
 client.disconnect()
-hoe.loop_stop
-hoe.disconnect()
+client2.loop_stop
+client2.disconnect()
