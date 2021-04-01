@@ -48,7 +48,7 @@ client.connect(broker)
 client2.connect(broker)
 # Loop needed for callback to work
 client.loop_start()
-client2.loop_forever()
+client2.loop_start()
 
 # SUBSCRIBE CODE
 client.subscribe("test123")
