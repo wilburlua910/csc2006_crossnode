@@ -16,8 +16,9 @@ global data
 ########################################
 
 def writeTxt(inputTime):
-    f = open("Timing.txt", "w+")
-    f.write(inputTime, "\r\n")
+    time = str(inputTime) + " \r\n"
+    f = open("Edge_1.txt", "a")
+    f.write(time)
     f.close()
 
 def getCurrentTime(input, i):
