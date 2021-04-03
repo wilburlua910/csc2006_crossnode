@@ -1,6 +1,7 @@
 import paho.mqtt.client as mqtt #import the client1
 import time
 import json
+import random
 ############
 
 SYSTEM_TIME =time.time()
@@ -18,9 +19,9 @@ def getCurrentTime(input):
 
 broker_address="172.20.10.4"
 print("creating new instance")
-client = mqtt.Client("Edge_2") #create new instance
+client = mqtt.Client("Edge_2") 
 print("connecting to broker")
-client.connect(broker_address) #connect to broker
+client.connect(broker_address)
 
 i=0
 client.loop_stop
@@ -28,20 +29,21 @@ client.loop_start() #start the loop
 while(True):
     i += 1
     time.sleep(5)
-    
-    print("Publishing message to topic","Traffic/Edge1")
+    lane_data = {
+        "straight": 1,
+        "right": 0 
+    }
+    print("Publishing message to topic","Traffic/Edge2")
     data = {
-        "vehicles_straight" : 4,
-        "vehicles_right": 10,
+        "section": 2,
+        "lane": lane_data,
         "timestamp": str(time.time())
-
     }
     msg = json.dumps(data)
     print(type(data))
     print(type(msg))
     #msg_to_json = json.dumps(MSG)
-    client.publish("Traffic/Edge1", msg)
-
+    client.publish("Traffic/Edge2", msg)
     #print("Time: ",(getCurrentTime(client.publish("Traffic/Edge1","4"))-(1000*i)), " ms")
 # time.sleep(20) # wait
 client.loop_stop() #stop the loop
