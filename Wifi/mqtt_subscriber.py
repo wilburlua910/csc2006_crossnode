@@ -4,7 +4,7 @@ import time
 import datetime
 
 
-SYSTEM_TIME = time.perf_counter_ns()
+SYSTEM_TIME = time.time()
 
 class junction:
 
@@ -23,8 +23,8 @@ class junction:
     #     #For loop here
     #     for i in range(len(data)):
 def getCurrentTime():
-    timenow = str(((time.perf_counter_ns()-SYSTEM_TIME))) + " ns"
-    return timenow
+    timenow = str(round((time.time()-SYSTEM_TIME)*1000)) + " ms"
+    print(timenow)
 
 
 def on_message(client, userdata, message):
@@ -35,7 +35,7 @@ def on_message(client, userdata, message):
     json_string_data = str(message.payload.decode("utf-8"))
     json_data = json.loads(json_string_data)
     
-
+    getCurrentTime()
     #Check from which section
     section = json_data['section']
     lane = json_data['lane']
@@ -83,8 +83,8 @@ data = {
 client = mqtt.Client("Master controller", userdata=data)
 client.on_message = on_message
 client.connect(broker_address)
-client.subscribe("Traffic/Edge1", qos=1)
-client.subscribe("Traffic/Edge2", qos=1)
+client.subscribe("Traffic/Edge1", qos=0)
+client.subscribe("Traffic/Edge2", qos=0)
 client.loop_forever()
 
 
