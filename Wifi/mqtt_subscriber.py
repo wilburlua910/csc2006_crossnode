@@ -27,15 +27,22 @@ def getCurrentTime():
     print(timenow)
 
 
-def on_message(client, userdata, message):
+def writeTxt(inputTime):
+    f = open("Timing.txt", "w+")
+    f.write(inputTime, "\r\n")
+    f.close()
 
+    
+
+def on_message(client, userdata, message):
+    writeTxt(getCurrentTime())
     #Passing object to the calback
     junction_obj = userdata['junction']
     #Conver the data from Byte/Byte Array into json string
     json_string_data = str(message.payload.decode("utf-8"))
     json_data = json.loads(json_string_data)
     
-    getCurrentTime()
+    
     #Check from which section
     section = json_data['section']
     lane = json_data['lane']

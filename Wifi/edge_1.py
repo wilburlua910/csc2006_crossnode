@@ -15,9 +15,14 @@ global data
     # print("\n\n Time sent: ", (round((time.time()-SYSTEM_TIME)*1000)-4000), " ms")
 ########################################
 
+def writeTxt(inputTime):
+    f = open("Timing.txt", "w+")
+    f.write(inputTime, "\r\n")
+    f.close()
+
 def getCurrentTime(input, i):
     timenow = (round((time.time()-SYSTEM_TIME)*1000)-(5000*i))
-    
+    writeTxt(timenow)
     return timenow
 
 # def writeTxt(output):

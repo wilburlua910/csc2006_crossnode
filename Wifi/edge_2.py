@@ -7,10 +7,15 @@ import random
 SYSTEM_TIME =time.time()
 global data
 
+def writeTxt(inputTime):
+    f = open("Timing.txt", "w+")
+    f.write(inputTime, "\r\n")
+    f.close()
+
 def getCurrentTime(input, i):
 
     timenow = (round((time.time()-SYSTEM_TIME)*1000)-(5000*i))
-    
+    writeTxt(timenow)
     return timenow
     #print("Queue is:", data["Queue"])
     #print("\n\n message topic=",message.topic)
