@@ -25,11 +25,11 @@ def on_message(client,userdata,msg):
 # broker = "localhost"
 # broker = "test.mosquitto.org"
 port = 1883
-broker="broker.hivemq.com"
+broker="169.254.238.24"
+# broker="pi.local"
 
 # Name the client within the arguement
-client = mqtt.Client("Pa Hoe")
-client2 = mqtt.Client("Pa Hoe2")
+client = mqtt.Client("Zy")
 
 # Binding all callback functions
 client.on_connect=on_connect
@@ -37,35 +37,23 @@ client.on_disconnect=on_disconnect
 client.on_log=on_log
 client.on_message=on_message
 
-client2.on_connect=on_connect
-client2.on_disconnect=on_disconnect
-client2.on_log=on_log
-client2.on_message=on_message
-
 # Setting up connection to the broker
 print("Connecting to broker: ",broker)
-client.connect(broker)
-client2.connect(broker)
+client.connect(broker,port)
+
 # Loop needed for callback to work
 client.loop_start()
-client2.loop_start()
+
 
 # SUBSCRIBE CODE
-client.subscribe("test123")
-client2.subscribe("test123")
+client.subscribe("smell123")
 
 while(True):
 # PUBLISH CODE 
 # ARGS:(topic, message)
     time.sleep(4)
-    client.loop_stop
-    client2.loop_stop
-    client.loop_start()
-    client2.loop_start()
 
 
 
 client.loop_stop
 client.disconnect()
-client2.loop_stop
-client2.disconnect()
