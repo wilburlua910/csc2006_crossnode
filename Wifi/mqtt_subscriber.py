@@ -4,6 +4,8 @@ import time
 import datetime
 
 
+SYSTEM_TIME = time.perf_counter_ns()
+
 class junction:
 
     def __init__(self):
@@ -20,6 +22,10 @@ class junction:
 
     #     #For loop here
     #     for i in range(len(data)):
+def getCurrentTime():
+    timenow = str(((time.perf_counter_ns()-SYSTEM_TIME))) + " ns"
+    return timenow
+
 
 def on_message(client, userdata, message):
 

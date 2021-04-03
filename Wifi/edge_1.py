@@ -7,15 +7,27 @@ import random
 SYSTEM_TIME =time.time()
 global data
 
-def getCurrentTime(input):
-    timenow = round((time.time()-SYSTEM_TIME)*1000)
-    return timenow
+
     #print("Queue is:", data["Queue"])
     #print("\n\n message topic=",message.topic)
     # print("\n\n message qos=",message.qos)
     # print("\n\n message retain flag=",message.retain)
     # print("\n\n Time sent: ", (round((time.time()-SYSTEM_TIME)*1000)-4000), " ms")
 ########################################
+
+def getCurrentTime(input, i):
+    timenow = (round((time.time()-SYSTEM_TIME)*1000)-(5000*i))
+    
+    return timenow
+
+# def writeTxt(output):
+#     f = open("Timing.txt", "w+")
+
+#     for i in range:
+#         f.write("Time: ", i, " - ", output, " \r\n")
+    
+#     f.close()
+
 
 broker_address="172.20.10.4"
 print("creating new instance")
@@ -43,7 +55,7 @@ while(True):
     print(type(data))
     print(type(msg))
     #msg_to_json = json.dumps(MSG)
-    client.publish("Traffic/Edge1", msg)
+    print(getCurrentTime(client.publish("Traffic/Edge1", msg, qos=1, retain=True), i), " ms")
     #print("Time: ",(getCurrentTime(client.publish("Traffic/Edge1","4"))-(1000*i)), " ms")
 # time.sleep(20) # wait
 client.loop_stop() #stop the loop
