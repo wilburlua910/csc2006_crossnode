@@ -7,8 +7,10 @@ import random
 SYSTEM_TIME =time.time()
 global data
 
-def getCurrentTime(input):
-    timenow = round((time.time()-SYSTEM_TIME)*1000)
+def getCurrentTime(input, i):
+
+    timenow = (round((time.time()-SYSTEM_TIME)*1000)-(5000*i))
+    
     return timenow
     #print("Queue is:", data["Queue"])
     #print("\n\n message topic=",message.topic)
@@ -44,6 +46,6 @@ while(True):
     print(type(msg))
     #msg_to_json = json.dumps(MSG)
     client.publish("Traffic/Edge2", msg)
-    #print("Time: ",(getCurrentTime(client.publish("Traffic/Edge1","4"))-(1000*i)), " ms")
+    print(getCurrentTime(client.publish("Traffic/Edge2", msg, qos=0, retain=False), i), " ms (Edge2)")
 # time.sleep(20) # wait
 client.loop_stop() #stop the loop

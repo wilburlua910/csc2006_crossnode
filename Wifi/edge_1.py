@@ -55,7 +55,7 @@ while(True):
     print(type(data))
     print(type(msg))
     #msg_to_json = json.dumps(MSG)
-    print(getCurrentTime(client.publish("Traffic/Edge1", msg, qos=1, retain=True), i), " ms")
+    print(getCurrentTime(client.publish("Traffic/Edge1", msg, qos=0, retain=False), i), " ms (Edge1)")
     #print("Time: ",(getCurrentTime(client.publish("Traffic/Edge1","4"))-(1000*i)), " ms")
 # time.sleep(20) # wait
 client.loop_stop() #stop the loop
