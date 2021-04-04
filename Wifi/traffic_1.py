@@ -23,7 +23,6 @@ def on_message(client, userdata, message):
     #Depends on which traffic light you are 
     if array_lights[position] == True:
         sense.set_pixels(arrow_shape.arrow_green)
-        pass
 
     else:
         sense.set_pixels(arrow_shape.full_red)
