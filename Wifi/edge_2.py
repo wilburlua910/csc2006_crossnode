@@ -25,7 +25,7 @@ def getCurrentTime(input, i):
     # print("\n\n Time sent: ", (round((time.time()-SYSTEM_TIME)*1000)-4000), " ms")
 ########################################
 
-broker_address="172.20.10.4"
+broker_address="192.168.1.127"
 print("creating new instance")
 client = mqtt.Client("Edge_2") 
 print("connecting to broker")
