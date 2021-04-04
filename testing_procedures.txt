@@ -1,0 +1,36 @@
+Testing Procedure:
+
+Latency time: Publishing 1 edge to 1 controller
+1. Get latency for MQTT publish from Edge_1 to mqttSubscriber using QoS(0)
+2. Get latency for MQTT publish from Edge_1 to mqttSubscriber using QoS(1) retain=True
+3. Get latency for MQTT publish from Edge_1 to mqttSubscriber using QoS(2) retain=True
+
+Latency time: Subscribing 1 controller to 1 edge
+1. Get latency time for MQTT to subscribe from mqttSubscriber to Edge_1 using QoS(0) 
+2. Get latency time for MQTT to subscribe from mqttSubscriber to Edge_1 using QoS(1) retain=True
+3. Get latency time for MQTT to subscribe from mqttSubscriber to Edge_1 using QoS(2) retain=True
+
+Latency time: Publishing 2 edge to 1 controller
+1. Get latency for MQTT publish from Edge_1 & Edge_2 to mqttSubscriber using QoS(0)
+2. Get latency for MQTT publish from Edge_1 & Edge_2 to mqttSubscriber using QoS(1) retain=True
+3. Get latency for MQTT publish from Edge_1 & Edge_2 to mqttSubscriber using QoS(2) retain=True
+
+Latency time: Subscribing 2 edge to 1 controller
+1. Get latency time for MQTT to subscribe from mqttSubscriber to Edge_1 & Edge_2 using QoS(0) 
+2. Get latency time for MQTT to subscribe from mqttSubscriber to Edge_1 & Edge_2 using QoS(1) retain=True
+3. Get latency time for MQTT to subscribe from mqttSubscriber to Edge_1 & Edge_2 using QoS(2) retain=True
+
+Latency time: Receiving BLE message from BLE(Edge_1) 
+1. Get latency time for bleClient to receive message from BLE(Edge_1)
+
+Maximum packet size: Capped limit for bleClient to receive message
+1. Get average packet size in Bytes 
+2. Get maximum packet size in Bytes
+
+High Availability:
+No network outage
+
+Low Availability:
+1. Controller loses Wi-Fi connection
+2. Edge_1 loses Wi-Fi connection
+3. Edge_2 loses Wi-Fi connection
