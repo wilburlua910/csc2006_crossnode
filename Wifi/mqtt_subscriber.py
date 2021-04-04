@@ -20,18 +20,15 @@ class junction:
         
     # def sort(self, data):
 
-    #     #For loop here
-    #     for i in range(len(data)):
-def getCurrentTime():
-    timenow = str(round((time.time()-SYSTEM_TIME)*1000)) + " ms"
-    print(timenow)
-
-
 def writeTxt(inputTime):
-    f = open("Timing.txt", "w+")
-    f.write(inputTime, "\r\n")
+    time = str(inputTime) + "\r\n"
+    f = open("Controller_Wifi.txt", "a")
+    f.write(time)
     f.close()
 
+def getCurrentTime():
+    timenow = str(round((time.time()-SYSTEM_TIME)*1000)) + " ms"
+    writeTxt(timenow)
     
 
 def on_message(client, userdata, message):
