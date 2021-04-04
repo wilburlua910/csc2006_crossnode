@@ -7,7 +7,6 @@ import random
 SYSTEM_TIME =time.time()
 global data
 
-
     #print("Queue is:", data["Queue"])
     #print("\n\n message topic=",message.topic)
     # print("\n\n message qos=",message.qos)

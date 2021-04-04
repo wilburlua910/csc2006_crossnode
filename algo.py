@@ -6,7 +6,7 @@ currentIteration = 0
 emptyCount = 0
 currentSection = 0
 
-straightGreenLight: [False, False, False, False]
+straightGreenLight = [False, False, False, False]
 # rightGreenLight: [False, False, False, False]
 
 
