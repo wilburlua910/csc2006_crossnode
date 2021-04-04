@@ -60,7 +60,9 @@ client = mqtt.Client("Test")
 client.connect(broker_address)
 client.on_connect = on_connect
 client.on_message = on_message
+initLight = [True, False, True, False]
 client.loop_start()
+client.publish("Light/Start", )
 
 
     
