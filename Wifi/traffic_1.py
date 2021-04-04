@@ -17,6 +17,7 @@ def on_connect(client, userdata, flags, rc):
 def on_message(client, userdata, message):
 
     #Message would be a Lights array
+    print("received msg")
 
     array_lights = json.loads(message.payload.decode("utf-8"))
 
@@ -38,5 +39,5 @@ client.connect(broker_address)
 client.on_connect = on_connect
 client.on_message = on_message
 # initLight = [True, False, True, False]
-client.loop_start()
+client.loop_forever()
 
