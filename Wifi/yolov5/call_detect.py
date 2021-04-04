@@ -17,7 +17,7 @@ def on_message(client, userdata, message):
     print(json_string)
 
 broker_address="192.168.1.127"
-client = mqtt.Client("Test1")
+client = mqtt.Client("detect")
 client.connect(broker_address)
 client.on_connect = on_connect
 client.on_message = on_message

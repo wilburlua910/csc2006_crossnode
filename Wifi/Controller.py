@@ -7,9 +7,9 @@ import paho.mqtt.client as mqtt #import the client1
 # Global variables
 currentIteration = 0
 emptyCount = 0
-currentSection = 0
+# global CURRENT_SECTION
 
-straightGreenLight = [False, False, False, False]
+
 # rightGreenLight: [False, False, False, False]
 
 def on_connect(client, userdata, flags, rc):
@@ -25,18 +25,19 @@ def on_message(client, userdata, message):
     print(json_string)
     print("entered message")
 
-def run_algo():
-    if currentSection == 1:
-        currentSection = 0
+def run_algo(CURRENT_SECTION):
+    straightGreenLight = [False, False, False, False]
+    if CURRENT_SECTION == 1:
+        CURRENT_SECTION = 0
     else:
-        currentSection += 1
+        CURRENT_SECTION += 1
     
-    straightGreenLight[currentSection] = True
-    straightGreenLight[currentSection + 2] = True
+    straightGreenLight[CURRENT_SECTION] = True
+    straightGreenLight[CURRENT_SECTION + 2] = True
     client.publish("Traffic/Lights", json.dumps(straightGreenLight), qos=0, retain=False)
     #return straightGreenLight
 
-def start_program():
+def start_program(CURRENT_SECTION):
     t=0
     while t < 10:
         mins, secs = divmod(t, 60)
@@ -48,20 +49,21 @@ def start_program():
         print(timeformat, end='\r')
         time.sleep(1)
         t += 1
-    run_algo()
-    start_program()
+    run_algo(CURRENT_SECTION)
+    # start_program()
 
 
 # If it's at 60 seconds, next section will turn green
 broker_address="192.168.1.127"
-client = mqtt.Client("Test")
+client = mqtt.Client("Controller")
 client.connect(broker_address)
 client.on_connect = on_connect
 client.on_message = on_message
 initLight = [True, False, True, False]
 client.publish("Traffic/Lights", json.dumps(initLight), qos=0, retain=False)
-client.loop_start()
-start_program()
+CURRENT_SECTION = 0
+start_program(CURRENT_SECTION)
+client.loop_forever()
 
     
 
