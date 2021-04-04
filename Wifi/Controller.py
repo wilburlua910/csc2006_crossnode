@@ -44,9 +44,10 @@ def start_loop():
     t=0
     while t < 60:
         mins, secs = divmod(t, 60)
+        
         if int(secs)%15 == 0 and int(secs) != 0:
             client.publish("Traffic/Start", "1", qos=0, retain=False)
-            
+
         timeformat = '{:02d}:{:02d}'.format(mins, secs)
         print(timeformat, end='\r')
         time.sleep(1)
@@ -60,10 +61,9 @@ client = mqtt.Client("Test")
 client.connect(broker_address)
 client.on_connect = on_connect
 client.on_message = on_message
-initLight = [True, False, True, False]
+# initLight = [True, False, True, False]
 client.loop_start()
-client.publish("Light/Start", )
-
+start_loop()
 
     
 
