@@ -5,6 +5,7 @@ import paho.mqtt.client as mqtt #import the client1
 import arrow as arrow_shape
 from sense_hat import SenseHat
 
+sense = SenseHat()
 position = 0
 
 def on_connect(client, userdata, flags, rc):
