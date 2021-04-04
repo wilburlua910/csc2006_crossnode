@@ -25,7 +25,7 @@ def on_message(client, userdata, message):
         sense.set_pixels(arrow_shape.arrow_green)
 
     else:
-        sense.set_pixels(arrow_shape.full_red)
+        sense.set_pixels(arrow_shape.arrow_red)
 
     json_string = str(message.payload.decode("utf-8"))
     print(json.loads(json_string))
