@@ -24,35 +24,31 @@ def on_message(client, userdata, message):
     print(json.loads(json_string))
     print(json_string)
     print("entered message")
-    #Passing object to the calback
-    # junction_obj = userdata['junction']
-    #Conver the data from Byte/Byte Array into json string
-    # json_string_data = str(message.payload.decode("utf-8"))
-    # json_data = json.loads(json_string_data)
-    # print(json_data)
 
-def run_algo(data):
+def run_algo():
     if currentSection == 1:
         currentSection = 0
     else:
         currentSection += 1
-        straightGreenLight[currentSection] = True
-        straightGreenLight[currentSection + 2] = True
+    
+    straightGreenLight[currentSection] = True
+    straightGreenLight[currentSection + 2] = True
+    client.publish("Traffic/Lights", json.dumps(straightGreenLight), qos=0, retain=False)
     #return straightGreenLight
 
-def start_loop():
+def start_program():
     t=0
     while t < 60:
         mins, secs = divmod(t, 60)
-        
+
         if int(secs)%15 == 0 and int(secs) != 0:
-            client.publish("Traffic/Start", "1", qos=0, retain=False)
+            client.publish("Traffic/Controller", "1", qos=0, retain=False)
 
         timeformat = '{:02d}:{:02d}'.format(mins, secs)
         print(timeformat, end='\r')
         time.sleep(1)
         t += 1
-    start_loop()
+    start_program()
 
 
 # If it's at 60 seconds, next section will turn green
@@ -61,9 +57,10 @@ client = mqtt.Client("Test")
 client.connect(broker_address)
 client.on_connect = on_connect
 client.on_message = on_message
-# initLight = [True, False, True, False]
+initLight = [True, False, True, False]
+client.publish("Traffic/Lights", json.dumps(initLight), qos=0, retain=False)
 client.loop_start()
-start_loop()
+start_program()
 
     
 
