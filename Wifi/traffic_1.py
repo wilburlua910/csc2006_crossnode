@@ -5,7 +5,7 @@ import paho.mqtt.client as mqtt #import the client1
 import arrow as arrow_shape
 from sense_hat import SenseHat
 
-position = 1
+position = 0
 
 def on_connect(client, userdata, flags, rc):
     print("Connected with result code "+str(rc))
@@ -21,7 +21,7 @@ def on_message(client, userdata, message):
     array_lights = json.loads(message.payload.decode("utf-8"))
 
     #Depends on which traffic light you are 
-    if position == 1 and array_lights[0] == True:
+    if array_lights[position] == True:
         sense.set_pixels(arrow_shape.arrow_green)
         pass
 

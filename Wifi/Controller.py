@@ -38,16 +38,17 @@ def run_algo():
 
 def start_program():
     t=0
-    while t < 60:
+    while t < 10:
         mins, secs = divmod(t, 60)
 
-        if int(secs)%15 == 0 and int(secs) != 0:
+        if int(secs)%10 == 0 and int(secs) != 0:
             client.publish("Traffic/Controller", "1", qos=0, retain=False)
 
         timeformat = '{:02d}:{:02d}'.format(mins, secs)
         print(timeformat, end='\r')
         time.sleep(1)
         t += 1
+    run_algo()
     start_program()
 
 
