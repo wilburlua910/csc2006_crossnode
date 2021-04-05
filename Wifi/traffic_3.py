@@ -6,7 +6,7 @@ import arrow as arrow_shape
 from sense_hat import SenseHat
 
 sense = SenseHat()
-position = 0
+position = 2
 
 def on_connect(client, userdata, flags, rc):
     print("Connected with result code "+str(rc))
