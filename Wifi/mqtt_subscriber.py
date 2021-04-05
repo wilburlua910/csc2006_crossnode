@@ -4,8 +4,8 @@ import time
 import datetime
 
 
-SYSTEM_TIME = time.time()
 
+SYSTEM_TIME = time.time()
 class junction:
 
     def __init__(self):
@@ -21,18 +21,20 @@ class junction:
     # def sort(self, data):
 
 def writeTxt(inputTime):
-    time = str(inputTime) + "\r\n"
+    time = str(inputTime) + " \r\n"
     f = open("Controller_Wifi.txt", "a")
     f.write(time)
     f.close()
 
 def getCurrentTime():
-    timenow = str(round((time.time()-SYSTEM_TIME)*1000)) + " ms"
+    
+    timenow = (round((time.time()-SYSTEM_TIME)* 1000))
     writeTxt(timenow)
+    return timenow
     
 
 def on_message(client, userdata, message):
-    writeTxt(getCurrentTime())
+    getCurrentTime()
     #Passing object to the calback
     junction_obj = userdata['junction']
     #Conver the data from Byte/Byte Array into json string
@@ -87,8 +89,8 @@ data = {
 client = mqtt.Client("Master controller", userdata=data)
 client.on_message = on_message
 client.connect(broker_address)
-client.subscribe("Traffic/Edge1", qos=0)
-client.subscribe("Traffic/Edge2", qos=0)
+print(client.subscribe("Traffic/Edge1",qos=1))
+#client.subscribe("Traffic/Edge2", qos=0)
 client.loop_forever()
 
 
