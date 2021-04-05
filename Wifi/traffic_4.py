@@ -5,7 +5,7 @@ import paho.mqtt.client as mqtt #import the client1
 import arrow as arrow_shape
 from sense_hat import SenseHat
 
-position = 1
+position = 3
 
 def on_connect(client, userdata, flags, rc):
     print("Connected with result code "+str(rc))
