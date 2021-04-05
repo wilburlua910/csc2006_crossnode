@@ -56,7 +56,7 @@ def start_program():
 
 
 # If it's at 60 seconds, next section will turn green
-broker_address="192.168.1.127"
+broker_address="192.168.0.139"
 client = mqtt.Client("Controller")
 client.connect(broker_address)
 client.on_connect = on_connect
