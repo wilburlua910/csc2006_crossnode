@@ -12,7 +12,7 @@
 - Pi is now a broker and the controllers and other pi devices can now connect to it
 
 ### To get all the dependencies required for Yolov5 object detection model
-`cd /Wifi/Yolov5` 
+- `cd /Wifi/Yolov5` 
 - `pip3 install -r requirements.txt` 
 
 What if mosquitto not running?
