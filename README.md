@@ -11,6 +11,10 @@
 - Run the verbose on the new config file: ``` sudo mosquitto -c newconfig.conf -p 1883 -v ```
 - Pi is now a broker and the controllers and other pi devices can now connect to it
 
+### To simulate the traffic light demonstration
+- run ``` Controller.py``` on a separate Pi pointing to the Broker's IP address
+- run ``` traffic<1/2/3/4>.py ``` on separate Pis pointing to the Broker's IP address
+
 ### To get all the dependencies required for Yolov5 object detection model
 - `cd /Wifi/Yolov5` 
 - `pip3 install -r requirements.txt` 
