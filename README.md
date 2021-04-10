@@ -23,7 +23,7 @@ Option 1
 or 
 `sudo systemctl stop mosquitto`
 
-For Bluetooth
+## Bluetooth
 - `pip3 install bluepy`
 - use hciconfig to get the MAC addresses of the peripherals
 - change the MAC address target inside the bleClient.py
