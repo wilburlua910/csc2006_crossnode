@@ -20,8 +20,6 @@
 - `pip3 install -r requirements.txt` 
 
 ### What if mosquitto not running?
-
-### Option 1 
 `ps -ef | grep mosquitto` 
 `sudo kill <process number>`
 or `sudo systemctl stop mosquitto`
