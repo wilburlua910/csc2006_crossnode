@@ -19,13 +19,12 @@
 - `cd /Wifi/Yolov5` 
 - `pip3 install -r requirements.txt` 
 
-What if mosquitto not running?
+### What if mosquitto not running?
 
-Option 1 
+### Option 1 
 `ps -ef | grep mosquitto` 
 `sudo kill <process number>`
-or 
-`sudo systemctl stop mosquitto`
+or `sudo systemctl stop mosquitto`
 
 ## Bluetooth
 - `pip3 install bluepy`
