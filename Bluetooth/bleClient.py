@@ -16,6 +16,8 @@ def getCurrentTime(input):
 
 print("Connecting...")
 dev = btle.Peripheral("b8:27:eb:82:de:18")
+time.sleep(1)
+dev.setMTU(40)
 
 print("Services...")
 for svc in dev.services:
