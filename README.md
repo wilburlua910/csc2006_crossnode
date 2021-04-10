@@ -1,9 +1,7 @@
 # Smart Traffic Junction Project
 
 ## WiFi -MQTT
-
-
-### Install Mosquitto
+### Install Eclipse Mosquitto MQTT
 - `sudo apt-get update`
 - `sudo apt-get install mosquitto`
 - pip install ``` pip install mosquitto ```
@@ -22,5 +20,12 @@ What if mosquitto not running?
 Option 1 
 `ps -ef | grep mosquitto` 
 `sudo kill <process number>`
-or 
+or \n
 `sudo systemctl stop mosquitto`
+
+For Bluetooth
+- `pip3 install bluepy`
+- use hciconfig to get the MAC addresses of the peripherals
+- change the MAC address target inside the bleClient.py
+- run `python3 edge_2.py`
+- run `python3 bleclient.py`
